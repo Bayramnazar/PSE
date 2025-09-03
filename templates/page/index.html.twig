@@ -1,0 +1,12 @@
+<h1>Page Content</h1>
+
+<ul>
+    {% for item in contents %}
+        <li>
+            <h2>{{ item.title }}</h2>
+            <p>{{ item.content }}</p>
+        </li>
+    {% else %}
+        <li>No content found.</li>
+    {% endfor %}
+</ul>

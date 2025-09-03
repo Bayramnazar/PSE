@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>İçerik Düzenle</title>
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>İçerik Düzenle</h1>
+
+        <form method="post">
+            <label>Başlık:</label>
+            <input type="text" name="title" value="{{ content.title }}" required>
+
+            <label>İçerik:</label>
+            <textarea name="content" rows="5" required>{{ content.content }}</textarea>
+
+            <button type="submit">Güncelle</button>
+        </form>
+
+        <a href="{{ path('pages_list') }}" class="button back">Geri</a>
+    </div>
+</body>
+</html>

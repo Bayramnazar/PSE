@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Yeni İçerik Ekle</title>
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Yeni İçerik Ekle</h1>
+
+        <form method="post">
+            <label>Başlık:</label>
+            <input type="text" name="title" required>
+
+            <label>İçerik:</label>
+            <textarea name="content" rows="5" required></textarea>
+
+            <button type="submit">Kaydet</button>
+        </form>
+
+        <a href="{{ path('pages_list') }}" class="button back">Geri</a>
+    </div>
+</body>
+</html>

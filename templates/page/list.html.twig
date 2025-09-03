@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - İçerik Listesi</title>
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>İçerik Listesi</h1>
+        <a href="{{ path('page_new') }}" class="button">Yeni İçerik Ekle</a>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Başlık</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for content in contents %}
+                <tr>
+                    <td>{{ content.id }}</td>
+                    <td>{{ content.title }}</td>
+                    <td>
+                        <a href="{{ path('page_edit_single', {'id': content.id}) }}">Düzenle</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Hiç içerik yok.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
