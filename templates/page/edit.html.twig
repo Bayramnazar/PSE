@@ -1,3 +1,4 @@
+{# templates/page/edit.html.twig #}
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,16 +11,15 @@
         <h1>İçerik Düzenle</h1>
 
         <form method="post">
-            <label>Başlık:</label>
-            <input type="text" name="title" value="{{ content.title }}" required>
+            <label for="title">Başlık:</label>
+            <input type="text" id="title" name="title" value="{{ content.title }}" required>
 
-            <label>İçerik:</label>
-            <textarea name="content" rows="5" required>{{ content.content }}</textarea>
+            <label for="content">İçerik:</label>
+            <textarea id="content" name="content" rows="5" required>{{ content.content }}</textarea>
 
-            <button type="submit">Güncelle</button>
+            <button type="submit" class="button save">Güncelle</button>
+            <a href="{{ path('pages_list') }}" class="button back">Geri</a>
         </form>
-
-        <a href="{{ path('pages_list') }}" class="button back">Geri</a>
     </div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-/* personal_page.css */
+/* personal_page.css (geliştirilmiş) */
 body {
     font-family: "Poppins", sans-serif;
     background-color: #f2f6fc;
@@ -6,6 +6,7 @@ body {
     margin: 0;
     padding: 0;
 }
+
 .container {
     width: 80%;
     max-width: 900px;
@@ -15,11 +16,13 @@ body {
     border-radius: 12px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
+
 h1 {
     text-align: center;
     color: #2c3e50;
     margin-bottom: 20px;
 }
+
 .profile-photo {
     float: left;
     width: 180px;
@@ -28,15 +31,29 @@ h1 {
     border-radius: 12px;
     box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
 }
+
+/* Paragraflar */
 p {
     line-height: 1.6;
     margin-bottom: 15px;
     text-align: justify;
 }
+
+/* Liste */
 ul {
     margin-top: 20px;
     padding-left: 20px;
 }
 ul li {
     margin-bottom: 10px;
+}
+
+/* Responsive ayar */
+@media (max-width: 600px) {
+    .profile-photo {
+        float: none;
+        display: block;
+        margin: 0 auto 20px auto;
+        width: 150px;
+    }
 }

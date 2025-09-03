@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PageController extends AbstractController
 {
-    // Frontend: tüm içerikleri göster
+    // Frontend: show all
     #[Route('/page', name: 'page')]
     public function index(EntityManagerInterface $em): Response
     {
@@ -22,7 +22,7 @@ class PageController extends AbstractController
         ]);
     }
 
-    // Admin: içerik listesi
+    // Admin: pages
     #[Route('/admin/pages', name: 'pages_list')]
     public function list(EntityManagerInterface $em): Response
     {
@@ -33,7 +33,7 @@ class PageController extends AbstractController
         ]);
     }
 
-    // Admin: yeni içerik oluştur
+    // Admin: new page
     #[Route('/admin/page/new', name: 'page_new')]
     public function new(Request $request, EntityManagerInterface $em): Response
     {
@@ -61,7 +61,7 @@ class PageController extends AbstractController
         return $this->render('page/new.html.twig');
     }
 
-    // Admin: tek içerik düzenleme
+    // Admin: edit single page
     #[Route('/admin/page/edit/{id}', name: 'page_edit_single')]
     public function editSingle(Request $request, EntityManagerInterface $em, $id): Response
     {
