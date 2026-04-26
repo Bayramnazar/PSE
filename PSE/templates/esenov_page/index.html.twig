@@ -1,20 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello EsenovPageController!{% endblock %}
+{% block title %}Esenov İletişim Sayfası{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="text-center mb-4">Bize Mesaj Gönderin</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+            {# Başarı Mesajları #}
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success shadow-sm">
+                    {{ message }}
+                </div>
+            {% endfor %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Projects/PSE/PSE/PSE/src/Controller/EsenovPageController.php</code></li>
-        <li>Your template at <code>C:/Projects/PSE/PSE/PSE/templates/esenov_page/index.html.twig</code></li>
-    </ul>
+            {# İletişim Formu Kartı #}
+            <div class="card shadow border-0">
+                <div class="card-body p-4">
+                    {{ form_start(esenov_form) }}
+                        <div class="mb-3">
+                            {{ form_row(esenov_form.fullName, {'attr': {'class': 'form-control', 'placeholder': 'Adınız ve Soyadınız'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(esenov_form.email, {'attr': {'class': 'form-control', 'placeholder': 'eposta@adresiniz.com'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(esenov_form.message, {'attr': {'class': 'form-control', 'rows': '5', 'placeholder': 'Mesajınızı buraya yazın...'}}) }}
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">Gönder</button>
+                        </div>
+                    {{ form_end(esenov_form) }}
+                </div>
+            </div>
+
+            {# Gelen Mesajlar Listesi (Opsiyonel) #}
+            {% if messages is not empty %}
+                <div class="mt-5">
+                    <h3>Son Gelen Mesajlar</h3>
+                    <div class="list-group">
+                        {% for msg in messages %}
+                            <div class="list-group-item list-group-item-action shadow-sm mb-2 border-0">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">{{ msg.fullName }}</h5>
+                                    <small class="text-muted">{{ msg.createdAt|date('d.m.Y H:i') }}</small>
+                                </div>
+                                <p class="mb-1">{{ msg.message }}</p>
+                                <small class="text-primary">{{ msg.email }}</small>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
 </div>
 {% endblock %}

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ContactMessageRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ContactMessageRepository::class)]
@@ -19,8 +20,16 @@ class ContactMessage
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $message = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -35,7 +44,6 @@ class ContactMessage
     public function setFullName(string $fullName): static
     {
         $this->fullName = $fullName;
-
         return $this;
     }
 
@@ -47,7 +55,6 @@ class ContactMessage
     public function setEmail(string $email): static
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -59,7 +66,17 @@ class ContactMessage
     public function setMessage(string $message): static
     {
         $this->message = $message;
+        return $this;
+    }
 
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
         return $this;
     }
 }
