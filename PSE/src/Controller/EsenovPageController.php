@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class EsenovPageController extends AbstractController
 {
-    #[Route('/esenov/page', name: 'app_esenov_page')]
+    #[Route('/esenov', name: 'esenov_page')]
     public function index(): Response
     {
         return $this->render('esenov_page/index.html.twig', [
