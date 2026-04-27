@@ -22,7 +22,6 @@ final class EsenovPageController extends AbstractController
         
         $contactMessage = new ContactMessage();
         $form = $this->createForm(ContactMessageType::class, $contactMessage);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -33,12 +32,24 @@ final class EsenovPageController extends AbstractController
             return $this->redirectToRoute('esenov_page');
         }
 
-        // Sayfanın altında eski mesajları da listeleyelim
-        $oldMessages = $contactRepository->findBy([], ['createdAt' => 'DESC'], 5);
+        // Tüm mesajları çekiyoruz
+        $oldMessages = $contactRepository->findBy([], ['createdAt' => 'DESC']);
 
         return $this->render('esenov_page/index.html.twig', [
             'esenov_form' => $form->createView(),
             'messages' => $oldMessages
         ]);
+    }
+
+    // İŞTE EKSİK OLAN KISIM BURASIYDI:
+    #[Route('/esenov/delete/{id}', name: 'esenov_delete')]
+    public function delete(ContactMessage $message, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($message);
+        $entityManager->flush();
+
+        $this->addFlash('danger', 'Mesaj başarıyla silindi hocam!');
+        
+        return $this->redirectToRoute('esenov_page');
     }
 }
